@@ -12,38 +12,37 @@ import (
  * You can return the answer in any order.
  */
 
+type TwoSum struct {
+	nums   []int
+	target int
+	output []int
+}
+
 func TestTwoSum(t *testing.T) {
-	// Example 1
-	nums := []int{2, 7, 11, 15}
-	target := 9
-	output := []int{0, 1}
-
-	result := twoSum(nums, target)
-
-	if !common.IntArrayEquals(result, output) {
-		t.Error("Failed example 1")
+	inputs := []TwoSum{
+		{
+			nums:   []int{2, 7, 11, 15},
+			target: 9,
+			output: []int{0, 1},
+		},
+		{
+			nums:   []int{3, 2, 4},
+			target: 6,
+			output: []int{1, 2},
+		},
+		{
+			nums:   []int{3, 3},
+			target: 6,
+			output: []int{0, 1},
+		},
 	}
 
-	// Example 2
-	nums = []int{3, 2, 4}
-	target = 6
-	output = []int{1, 2}
+	for index, in := range inputs {
+		result := twoSum(in.nums, in.target)
 
-	result = twoSum(nums, target)
-
-	if !common.IntArrayEquals(result, output) {
-		t.Error("Failed example 2")
-	}
-
-	// Example 3
-	nums = []int{3, 3}
-	target = 6
-	output = []int{0, 1}
-
-	result = twoSum(nums, target)
-
-	if !common.IntArrayEquals(result, output) {
-		t.Error("Failed example 3")
+		if !common.IntArrayEquals(result, in.output) {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 

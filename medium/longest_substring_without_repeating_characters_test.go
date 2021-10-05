@@ -9,35 +9,34 @@ import (
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  * Given a string s, find the length of the longest substring without repeating characters.
  */
+
+type LongestSubstringWithoutRepeatingCharacters struct {
+	s      string
+	output int
+}
+
 func TestLongestSubstringWithoutRepeatingCharacters(t *testing.T) {
-	// Example 1
-	s := "abcabcbb"
-	output := 3
-
-	result := lengthOfLongestSubstring(s)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []LongestSubstringWithoutRepeatingCharacters{
+		{
+			s:      "abcabcbb",
+			output: 3,
+		},
+		{
+			s:      "bbbbb",
+			output: 1,
+		},
+		{
+			s:      "pwwkew",
+			output: 3,
+		},
 	}
 
-	// Example 2
-	s = "bbbbb"
-	output = 1
+	for index, in := range inputs {
+		result := lengthOfLongestSubstring(in.s)
 
-	result = lengthOfLongestSubstring(s)
-
-	if result != output {
-		t.Error("Failed example 2")
-	}
-
-	// Example 1
-	s = "pwwkew"
-	output = 3
-
-	result = lengthOfLongestSubstring(s)
-
-	if result != output {
-		t.Error("Failed example 3")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 
