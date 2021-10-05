@@ -30,7 +30,7 @@ func TestRemoveDuplicatesFromSortedArray(t *testing.T) {
 	result = removeDuplicates(nums)
 
 	if result != output {
-		t.Error("Failed example 1")
+		t.Error("Failed example 2")
 	}
 }
 
