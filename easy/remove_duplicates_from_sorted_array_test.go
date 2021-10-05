@@ -12,25 +12,29 @@ import (
  * Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
  */
 
+type RemoveDuplicatesFromSortedArray struct {
+	nums   []int
+	output int
+}
+
 func TestRemoveDuplicatesFromSortedArray(t *testing.T) {
-	// Example 1
-	nums := []int{1, 1, 2}
-	output := 2
-
-	result := removeDuplicates(nums)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []RemoveDuplicatesFromSortedArray{
+		{
+			nums:   []int{1, 1, 2},
+			output: 2,
+		},
+		{
+			nums:   []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4},
+			output: 5,
+		},
 	}
 
-	// Example 2
-	nums = []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
-	output = 5
+	for index, in := range inputs {
+		result := removeDuplicates(in.nums)
 
-	result = removeDuplicates(nums)
-
-	if result != output {
-		t.Error("Failed example 2")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 

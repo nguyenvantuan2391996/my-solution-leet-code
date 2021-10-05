@@ -8,60 +8,47 @@ import "testing"
  * You must write an algorithm with O(log n) runtime complexity.
  */
 
+type InputSearchInsertPosition struct {
+	nums   []int
+	target int
+	output int
+}
+
 func TestSearchInsertPosition(t *testing.T) {
-	// Example 1
-	nums := []int{1, 3, 5, 6}
-	target := 5
-	output := 2
-
-	result := searchInsert(nums, target)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []InputSearchInsertPosition{
+		{
+			nums:   []int{1, 3, 5, 6},
+			target: 5,
+			output: 2,
+		},
+		{
+			nums:   []int{1, 3, 5, 6},
+			target: 2,
+			output: 1,
+		},
+		{
+			nums:   []int{1, 3, 5, 6},
+			target: 7,
+			output: 4,
+		},
+		{
+			nums:   []int{1, 3, 5, 6},
+			target: 0,
+			output: 0,
+		},
+		{
+			nums:   []int{1},
+			target: 0,
+			output: 0,
+		},
 	}
 
-	// Example 2
-	nums = []int{1, 3, 5, 6}
-	target = 2
-	output = 1
+	for index, in := range inputs {
+		result := searchInsert(in.nums, in.target)
 
-	result = searchInsert(nums, target)
-
-	if result != output {
-		t.Error("Failed example 2")
-	}
-
-	// Example 3
-	nums = []int{1, 3, 5, 6}
-	target = 7
-	output = 4
-
-	result = searchInsert(nums, target)
-
-	if result != output {
-		t.Error("Failed example 3")
-	}
-
-	// Example 4
-	nums = []int{1, 3, 5, 6}
-	target = 0
-	output = 0
-
-	result = searchInsert(nums, target)
-
-	if result != output {
-		t.Error("Failed example 4")
-	}
-
-	// Example 5
-	nums = []int{1}
-	target = 0
-	output = 0
-
-	result = searchInsert(nums, target)
-
-	if result != output {
-		t.Error("Failed example 5")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 

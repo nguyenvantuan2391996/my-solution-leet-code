@@ -8,45 +8,37 @@ import "testing"
  * An integer is a palindrome when it reads the same backward as forward. For example, 121 is palindrome while 123 is not.
  */
 
+type PalindromeNumber struct {
+	x      int
+	output bool
+}
+
 func TestPalindromeNumber(t *testing.T) {
-	// Example 1
-	x := 121
-	output := true
-
-	result := isPalindrome(x)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []PalindromeNumber{
+		{
+			x:      121,
+			output: true,
+		},
+		{
+			x:      -121,
+			output: false,
+		},
+		{
+			x:      10,
+			output: false,
+		},
+		{
+			x:      -101,
+			output: false,
+		},
 	}
 
-	// Example 2
-	x = -121
-	output = false
+	for index, in := range inputs {
+		result := isPalindrome(in.x)
 
-	result = isPalindrome(x)
-
-	if result != output {
-		t.Error("Failed example 2")
-	}
-
-	// Example 3
-	x = 10
-	output = false
-
-	result = isPalindrome(x)
-
-	if result != output {
-		t.Error("Failed example 3")
-	}
-
-	// Example 4
-	x = -101
-	output = false
-
-	result = isPalindrome(x)
-
-	if result != output {
-		t.Error("Failed example 4")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 

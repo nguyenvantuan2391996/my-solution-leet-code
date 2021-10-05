@@ -10,27 +10,32 @@ import "testing"
  * Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
  */
 
+type RemoveElement struct {
+	nums   []int
+	value  int
+	output int
+}
+
 func TestRemoveElement(t *testing.T) {
-	// Example 1
-	nums := []int{3, 2, 2, 3}
-	value := 3
-	output := 2
-
-	result := removeElement(nums, value)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []RemoveElement{
+		{
+			nums:   []int{3, 2, 2, 3},
+			value:  3,
+			output: 2,
+		},
+		{
+			nums:   []int{0, 1, 2, 2, 3, 0, 4, 2},
+			value:  2,
+			output: 5,
+		},
 	}
 
-	// Example 2
-	nums = []int{0, 1, 2, 2, 3, 0, 4, 2}
-	value = 2
-	output = 5
+	for index, in := range inputs {
+		result := removeElement(in.nums, in.value)
 
-	result = removeElement(nums, value)
-
-	if result != output {
-		t.Error("Failed example 2")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 

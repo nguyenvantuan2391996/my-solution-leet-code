@@ -10,45 +10,37 @@ import (
  * Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
  */
 
+type ReverseInteger struct {
+	x      int
+	output int
+}
+
 func TestReverseInteger(t *testing.T) {
-	// Example 1
-	x := 123
-	output := 321
-
-	result := reverse(x)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []ReverseInteger{
+		{
+			x:      123,
+			output: 321,
+		},
+		{
+			x:      -123,
+			output: -321,
+		},
+		{
+			x:      120,
+			output: 21,
+		},
+		{
+			x:      0,
+			output: 0,
+		},
 	}
 
-	// Example 2
-	x = -123
-	output = -321
+	for index, in := range inputs {
+		result := reverse(in.x)
 
-	result = reverse(x)
-
-	if result != output {
-		t.Error("Failed example 2")
-	}
-
-	// Example 3
-	x = 120
-	output = 21
-
-	result = reverse(x)
-
-	if result != output {
-		t.Error("Failed example 3")
-	}
-
-	// Example 4
-	x = 0
-	output = 0
-
-	result = reverse(x)
-
-	if result != output {
-		t.Error("Failed example 4")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 

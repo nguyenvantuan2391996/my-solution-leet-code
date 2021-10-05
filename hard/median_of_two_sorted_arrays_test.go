@@ -9,60 +9,48 @@ import (
  * Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
  * The overall run time complexity should be O(log (m+n)).
  */
+
+type MedianOfTwoSortedArrays struct {
+	nums1  []int
+	nums2  []int
+	output float64
+}
+
 func TestMedianOfTwoSortedArrays(t *testing.T) {
-	// Example 1
-	nums1 := []int{1, 3}
-	nums2 := []int{2}
-	output := 2.00000
-
-	result := findMedianSortedArrays(nums1, nums2)
-
-	if result != output {
-		t.Error("Failed example 1")
+	inputs := []MedianOfTwoSortedArrays{
+		{
+			nums1:  []int{1, 3},
+			nums2:  []int{2},
+			output: 2.00000,
+		},
+		{
+			nums1:  []int{1, 2},
+			nums2:  []int{3, 4},
+			output: 2.50000,
+		},
+		{
+			nums1:  []int{0, 0},
+			nums2:  []int{0, 0},
+			output: 0.00000,
+		},
+		{
+			nums1:  []int{},
+			nums2:  []int{1},
+			output: 1.00000,
+		},
+		{
+			nums1:  []int{2},
+			nums2:  []int{},
+			output: 2.00000,
+		},
 	}
 
-	// Example 2
-	nums1 = []int{1, 2}
-	nums2 = []int{3, 4}
-	output = 2.50000
+	for index, in := range inputs {
+		result := findMedianSortedArrays(in.nums1, in.nums2)
 
-	result = findMedianSortedArrays(nums1, nums2)
-
-	if result != output {
-		t.Error("Failed example 2")
-	}
-
-	// Example 3
-	nums1 = []int{0, 0}
-	nums2 = []int{0, 0}
-	output = 0.00000
-
-	result = findMedianSortedArrays(nums1, nums2)
-
-	if result != output {
-		t.Error("Failed example 3")
-	}
-
-	// Example 4
-	nums1 = []int{}
-	nums2 = []int{1}
-	output = 1.00000
-
-	result = findMedianSortedArrays(nums1, nums2)
-
-	if result != output {
-		t.Error("Failed example 4")
-	}
-
-	// Example 5
-	nums1 = []int{2}
-	nums2 = []int{}
-	output = 2.00000
-
-	result = findMedianSortedArrays(nums1, nums2)
-
-	if result != output {
-		t.Error("Failed example 5")
+		if result != in.output {
+			t.Errorf("Failed example %v", index+1)
+		}
 	}
 }
 
